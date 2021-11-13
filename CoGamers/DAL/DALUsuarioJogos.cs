@@ -7,11 +7,11 @@ using CoGamers.BLL;
 
 namespace CoGamers.DAL
 {
-    class DALJogo
+    class DALUsuarioJogos
     {
         string con = "Server=localhost;Database=CoGamers;User Id=ProjetoCanil;Password=123;";
 
-        public List<Jogo> GetJogos()
+        public void RemoveJogo(int IDJogo, int IDPessoa)
         {
             List<Jogo> retorno = new List<Jogo>();
 
@@ -20,22 +20,15 @@ namespace CoGamers.DAL
                 using (SqlConnection connection = new SqlConnection(con))
                 {
                     connection.Open();
-                    string Query = "SELECT IDJogo, Descricao FROM Jogos";
+                    string Query = " DELETE FROM UsuarioJogos";
+                           Query += " WHERE IDUsuario = " + IDPessoa + " ";
+                           Query += " AND   IDJogo = " + IDJogo + " ;";
 
                     using (SqlCommand command = new SqlCommand(Query, connection))
                     {
                         SqlDataReader odbcDataReader = command.ExecuteReader();
-                        while (odbcDataReader.Read())
-                        {
-                            Jogo jogo = new Jogo()
-                            {
-                                IDJogo = Convert.ToInt32(odbcDataReader["IDJogo"]),
-                                Descricao = Convert.ToString(odbcDataReader["Descricao"])
-                            };
-                            retorno.Add(jogo);
-                        }
+
                     }
-                    return retorno;
                 }
             }
             catch (Exception ex)
@@ -79,7 +72,7 @@ namespace CoGamers.DAL
             }
         }
 
-        public void AdicionaNovoJogo(string nomeJogo)
+        public void AdicionaJogoAoUsuario(string nomeJogo, int IDPessoa)
         {
             List<Jogo> retorno = new List<Jogo>();
 
@@ -88,9 +81,11 @@ namespace CoGamers.DAL
                 using (SqlConnection connection = new SqlConnection(con))
                 {
                     connection.Open();
-                    string Query = "INSERT INTO JOGOS  "; //INSERE JOGO NOVO
-                    Query += " VALUES ((SELECT MAX(IDJogo)+1 FROM JOGOS), ";
-                    Query += "          '" + nomeJogo + "'); ";
+                    string Query = "INSERT INTO UsuarioJogos";  //RELACIONA USUARIO COM O JOGO ADICIONADO
+                    Query += "      VALUES ((SELECT MAX(IDUsuarioJogo)+1 FROM UsuarioJogos), ";
+                    Query += "         '" + IDPessoa + "', ";
+                    Query += "        (SELECT IDJogo FROM JOGOS";
+                    Query += "          WHERE Descricao = '" + nomeJogo + "'));";    
 
 
                     using (SqlCommand command = new SqlCommand(Query, connection))
@@ -106,6 +101,6 @@ namespace CoGamers.DAL
             }
         }
 
-
+        
     }
 }

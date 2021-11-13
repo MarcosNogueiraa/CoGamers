@@ -20,6 +20,11 @@ namespace CoGamers.BLL
             return dALJogo.GetJogosPorUsuario(idUsuario);
         }
 
+        public void AdicionaNovoJogo(string nomeJogo)
+        {
+            dALJogo.AdicionaNovoJogo(nomeJogo);
+        }
+
 
     }
 }

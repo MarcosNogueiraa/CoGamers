@@ -23,7 +23,7 @@ namespace CoGamers.DAL
                     string Query = " SELECT us.Nome, us.Email FROM Usuario us ";
                             Query += " INNER JOIN UsuarioJogos uj ON us.IDUsuario = uj.IDUsuario ";
                             Query += " INNER JOIN Jogos jo ON uj.IDJogo = jo.IDJogo ";
-                            Query += " WHERE Descricao LIKE '%"+ nomeJogo + "%'";
+                            Query += " WHERE Descricao = '"+ nomeJogo + "'";
 
                     using (SqlCommand command = new SqlCommand(Query, connection))
                     {

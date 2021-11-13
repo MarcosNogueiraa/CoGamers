@@ -45,7 +45,10 @@ namespace CoGamers
             this.dGVPessoasPorJogo = new System.Windows.Forms.DataGridView();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbPessoasQueJogam = new System.Windows.Forms.Label();
+            this.btAdicionarJogo = new System.Windows.Forms.Button();
+            this.btRemoverJogo = new System.Windows.Forms.Button();
+            this.tBAdicionaJogo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -134,6 +137,7 @@ namespace CoGamers
             this.dGVJogosUsuario.Location = new System.Drawing.Point(0, 0);
             this.dGVJogosUsuario.Name = "dGVJogosUsuario";
             this.dGVJogosUsuario.RowTemplate.Height = 25;
+            this.dGVJogosUsuario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGVJogosUsuario.Size = new System.Drawing.Size(235, 254);
             this.dGVJogosUsuario.TabIndex = 0;
             // 
@@ -178,6 +182,8 @@ namespace CoGamers
             // 
             // dGVPessoasPorJogo
             // 
+            this.dGVPessoasPorJogo.AllowUserToAddRows = false;
+            this.dGVPessoasPorJogo.AllowUserToDeleteRows = false;
             this.dGVPessoasPorJogo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVPessoasPorJogo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nome,
@@ -191,7 +197,6 @@ namespace CoGamers
             this.dGVPessoasPorJogo.Size = new System.Drawing.Size(424, 216);
             this.dGVPessoasPorJogo.TabIndex = 0;
             this.dGVPessoasPorJogo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVPessoasPorJogo_CellClick);
-            this.dGVPessoasPorJogo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVPessoasPorJogo_CellContentClick);
             // 
             // Nome
             // 
@@ -208,16 +213,50 @@ namespace CoGamers
             this.Email.ReadOnly = true;
             this.Email.Width = 230;
             // 
-            // label3
+            // lbPessoasQueJogam
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label3.Location = new System.Drawing.Point(322, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(172, 25);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Pessoas que jogam";
+            this.lbPessoasQueJogam.AutoSize = true;
+            this.lbPessoasQueJogam.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbPessoasQueJogam.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lbPessoasQueJogam.Location = new System.Drawing.Point(322, 95);
+            this.lbPessoasQueJogam.Name = "lbPessoasQueJogam";
+            this.lbPessoasQueJogam.Size = new System.Drawing.Size(0, 25);
+            this.lbPessoasQueJogam.TabIndex = 6;
+            // 
+            // btAdicionarJogo
+            // 
+            this.btAdicionarJogo.BackColor = System.Drawing.Color.LimeGreen;
+            this.btAdicionarJogo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btAdicionarJogo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btAdicionarJogo.Location = new System.Drawing.Point(18, 355);
+            this.btAdicionarJogo.Name = "btAdicionarJogo";
+            this.btAdicionarJogo.Size = new System.Drawing.Size(106, 38);
+            this.btAdicionarJogo.TabIndex = 7;
+            this.btAdicionarJogo.Text = "Adicionar";
+            this.btAdicionarJogo.UseVisualStyleBackColor = false;
+            this.btAdicionarJogo.Click += new System.EventHandler(this.btAdicionarJogo_Click);
+            // 
+            // btRemoverJogo
+            // 
+            this.btRemoverJogo.BackColor = System.Drawing.Color.IndianRed;
+            this.btRemoverJogo.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btRemoverJogo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btRemoverJogo.Location = new System.Drawing.Point(147, 355);
+            this.btRemoverJogo.Name = "btRemoverJogo";
+            this.btRemoverJogo.Size = new System.Drawing.Size(106, 38);
+            this.btRemoverJogo.TabIndex = 8;
+            this.btRemoverJogo.Text = "Remover";
+            this.btRemoverJogo.UseVisualStyleBackColor = false;
+            this.btRemoverJogo.Click += new System.EventHandler(this.btRemoverJogo_Click);
+            // 
+            // tBAdicionaJogo
+            // 
+            this.tBAdicionaJogo.Location = new System.Drawing.Point(22, 399);
+            this.tBAdicionaJogo.Name = "tBAdicionaJogo";
+            this.tBAdicionaJogo.Size = new System.Drawing.Size(146, 23);
+            this.tBAdicionaJogo.TabIndex = 9;
+            this.tBAdicionaJogo.Text = "Insira o nome do jogo";
+            this.tBAdicionaJogo.Visible = false;
             // 
             // Busca
             // 
@@ -225,7 +264,10 @@ namespace CoGamers
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tBAdicionaJogo);
+            this.Controls.Add(this.btRemoverJogo);
+            this.Controls.Add(this.btAdicionarJogo);
+            this.Controls.Add(this.lbPessoasQueJogam);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.cBFiltroJogos);
             this.Controls.Add(this.label2);
@@ -234,6 +276,7 @@ namespace CoGamers
             this.Controls.Add(this.rTBBemVindo);
             this.Controls.Add(this.panel1);
             this.Name = "Busca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Busca";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -256,7 +299,7 @@ namespace CoGamers
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cBFiltroJogos;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbPessoasQueJogam;
         private System.Windows.Forms.DataGridView dGVPessoasPorJogo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
@@ -266,5 +309,8 @@ namespace CoGamers
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbEmailPessoaBusca;
         private System.Windows.Forms.Label lbNomePessoaBusca;
+        private System.Windows.Forms.Button btAdicionarJogo;
+        private System.Windows.Forms.Button btRemoverJogo;
+        private System.Windows.Forms.TextBox tBAdicionaJogo;
     }
 }
