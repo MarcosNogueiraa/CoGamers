@@ -29,7 +29,9 @@ namespace CoGamers
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Busca));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btCopiaEmail = new System.Windows.Forms.Button();
             this.lbEmailPessoaBusca = new System.Windows.Forms.Label();
             this.lbNomePessoaBusca = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -60,6 +62,7 @@ namespace CoGamers
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.panel1.Controls.Add(this.btCopiaEmail);
             this.panel1.Controls.Add(this.lbEmailPessoaBusca);
             this.panel1.Controls.Add(this.lbNomePessoaBusca);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -67,6 +70,17 @@ namespace CoGamers
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(777, 133);
             this.panel1.TabIndex = 0;
+            // 
+            // btCopiaEmail
+            // 
+            this.btCopiaEmail.Location = new System.Drawing.Point(655, 93);
+            this.btCopiaEmail.Name = "btCopiaEmail";
+            this.btCopiaEmail.Size = new System.Drawing.Size(87, 31);
+            this.btCopiaEmail.TabIndex = 3;
+            this.btCopiaEmail.Text = "COPIAR";
+            this.btCopiaEmail.UseVisualStyleBackColor = true;
+            this.btCopiaEmail.Visible = false;
+            this.btCopiaEmail.Click += new System.EventHandler(this.btCopiaEmail_Click);
             // 
             // lbEmailPessoaBusca
             // 
@@ -171,6 +185,7 @@ namespace CoGamers
             this.cBFiltroJogos.TabIndex = 5;
             this.cBFiltroJogos.Text = "Selecione um jogo:";
             this.cBFiltroJogos.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cBFiltroJogos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cBFiltroJogos_MouseClick);
             // 
             // panel3
             // 
@@ -275,6 +290,7 @@ namespace CoGamers
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rTBBemVindo);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Busca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Busca";
@@ -312,5 +328,6 @@ namespace CoGamers
         private System.Windows.Forms.Button btAdicionarJogo;
         private System.Windows.Forms.Button btRemoverJogo;
         private System.Windows.Forms.TextBox tBAdicionaJogo;
+        private System.Windows.Forms.Button btCopiaEmail;
     }
 }

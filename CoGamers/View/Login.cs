@@ -1,5 +1,6 @@
 ﻿using CoGamers.BLL;
 using CoGamers.Model;
+using CoGamers.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace CoGamers
     public partial class Login : Form
     {
         BLLUsuario bLLUsuario = new BLLUsuario();
+        Funcoes funcoes = new Funcoes();
+
         public Login()
         {
             InitializeComponent();
@@ -28,7 +31,8 @@ namespace CoGamers
                 MessageBox.Show("Login bem sucedido", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Busca busca = new Busca(tbEmail.Text);
-                busca.Show();
+                funcoes.SingletonForms(busca);
+               
             }
             else
             {

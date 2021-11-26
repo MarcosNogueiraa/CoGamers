@@ -41,7 +41,7 @@ namespace CoGamers
         {
             AtualizaListaPessoas();
             lbPessoasQueJogam.Text = "Pessoas que jogam: " + cBFiltroJogos.Text;
-
+            
         }
 
         private void AtualizaJogosBusca()
@@ -80,6 +80,7 @@ namespace CoGamers
         {
             lbNomePessoaBusca.Text = dGVPessoasPorJogo.CurrentRow.Cells[0].Value.ToString();
             lbEmailPessoaBusca.Text = dGVPessoasPorJogo.CurrentRow.Cells[1].Value.ToString();
+            btCopiaEmail.Visible = true;
         }
 
         private void dGVPessoasPorJogo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -149,6 +150,19 @@ namespace CoGamers
 
             }
 
+        }
+
+        private void cBFiltroJogos_MouseClick(object sender, MouseEventArgs e)
+        {
+            lbNomePessoaBusca.Text = "";
+            lbEmailPessoaBusca.Text = "";
+            btCopiaEmail.Visible = false;
+        }
+
+        private void btCopiaEmail_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lbEmailPessoaBusca.Text);
+            MessageBox.Show("Email copiado para a área de transferência.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
